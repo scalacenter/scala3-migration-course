@@ -109,20 +109,21 @@ $ cmtc install -f -s scalacenter/scala3-migration-course
 Downloading studentified course from 'https://github.com/scalacenter/scala3-migration-course/releases/download/0.1.0/scala3-migrate-course-student.zip' to courses directory
 
 Project scalacenter/scala3-migration-course (0.1.0) successfully installed to:
-  /user/Library/Caches/com.lunatech.cmt/Courses/scala3-migration-course
+  /home/user/Library/Caches/com.lunatech.cmt/Courses/scala3-migration-course
 
-Current course set to '/user/Library/Caches/com.lunatech.cmt/Courses/scala3-migration-course'
+Current course set to '/home/user/Library/Caches/com.lunatech.cmt/Courses/scala3-migration-course'
 
 Exercises in repository:
-  1.  *   exercise_00_install_sbt-scala3-migrate
-  2.      exercise_01_migrate_dependencies
-  3.      exercise_02_migrate_scalac_options
-  4.      exercise_03_migrate_syntax
-  5.      exercise_04_migrate_types
-  6.      exercise_05_udpate_scala_version
+  1.  *   exercise_000_initial_state
+  2.      exercise_001_install_sbt_scala3_migrate
+  3.      exercise_002_migrate_dependencies
+  4.      exercise_003_migrate_scalac_options
+  5.      exercise_004_migrate_syntax
+  6.      exercise_005_migrate_types
+  7.      exercise_006_update_scala_version
 ```
 
-As you can see in the above output, `cmtc` installed the course in the `/user/Library/Caches/com.lunatech.cmt/Courses/scala3-migration-course` folder.
+As you can see in the above output, `cmtc` installed the course in the `/home/user/Library/Caches/com.lunatech.cmt/Courses/scala3-migration-course` folder.
 Note that this location is OS specific, so, take a note of the location.
 
 #### Verifying the course installation
@@ -208,15 +209,16 @@ Run the `cmta` command to _studentify_ the main repo:
 
 ```bash
 $ cmta studentify -f -g -m ~/courses/scala3-migration-course -d ~/tmp/stu
-Studentifying scala3-migration-course to /user/tmp/stu/scala3-migration-course
+Studentifying scala3-migration-course to /home/user/tmp/stu/scala3-migration-course
 ..............
 Processed exercises:
-  exercise_00_install_sbt-scala3-migrate
-  exercise_01_migrate_dependencies
-  exercise_02_migrate_scalac_options
-  exercise_03_migrate_syntax
-  exercise_04_migrate_types
-  exercise_05_udpate_scala_version
+  exercise_000_initial_state
+  exercise_001_install_sbt_scala3_migrate
+  exercise_002_migrate_dependencies
+  exercise_003_migrate_scalac_options
+  exercise_004_migrate_syntax
+  exercise_005_migrate_types
+  exercise_006_update_scala_version
 
 ```
 
