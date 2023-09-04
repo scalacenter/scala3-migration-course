@@ -1,8 +1,12 @@
 # Migrating the compiler options
 
-The Scala 3 compiler does not contain the exact same set of options as the Scala 2 compiler. You can check out the [the Compiler Options Table](https://docs.scala-lang.org/scala3/guides/migration/options-lookup.html) to get a full comparison of all the compilers options.
+The Scala 3 compiler does not contain the exact same set of options as the Scala
+2 compiler. You can check out the [the Compiler Options
+Table](https://docs.scala-lang.org/scala3/guides/migration/options-lookup.html)
+to get a full comparison of all the compilers options.
 
-Hopefully sbt-scala3-migrate can help you update the `scalacOptions` in your build.
+Hopefully sbt-scala3-migrate can help you update the `scalacOptions` in your
+build.
 
 ## Steps
 
@@ -26,7 +30,8 @@ sbt:main> migrateScalacOptions main
 [warn] -Yrangepos
 ```
 
-2. Update the `scalacOptions` in a cross compatible way, using the following pattern:
+2. Update the `scalacOptions` in a cross compatible way, using the following
+   pattern:
 
 ```scala
 scalacOptions := {
