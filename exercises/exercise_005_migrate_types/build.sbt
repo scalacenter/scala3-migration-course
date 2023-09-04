@@ -9,19 +9,18 @@ lazy val main = project
         "UTF-8",
         "-Wunused:imports,privates,locals"
       )
-      if (scalaVersion.value.startsWith("3.")) {
-        sharedScalacOptions ++ Seq(
-          "-Xunchecked-java-output-version:8",
-          "-explain",
-          "-Ykind-projector"
-        )
-      } else {
-        sharedScalacOptions ++ Seq(
-          "-target:jvm-1.8",
-          "-Xsource:3",
-          "-explaintypes"
-        )
-      }
+      val scala3Options = sharedOptions ++ Seq(
+        "-Xunchecked-java-output-version:8",
+        "-explain",
+        "-Ykind-projector"
+      )
+      val scala2Options = sharedOptions ++ Seq(
+        "-target:jvm-1.8",
+        "-Xsource:3",
+        "-explaintypes"
+      )
+      if (scalaVersion.value.startsWith("3.")) scala3Options
+      else scala2Options
     },
     libraryDependencies ++= {
       val sharedDependencies = Seq(
