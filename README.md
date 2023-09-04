@@ -6,19 +6,33 @@ This course uses Lunatech's [Course Management Tools](https://github.com/lunatec
 
 ## Description
 
+Welcome to the Scala 3 migration course! In this course, we'll guide you through the process of transitioning a Scala 2.13 project to Scala 3 using the powerful [sbt-scala3-migrate](https://github.com/scalacenter/scala3-migrate) tool.
+
+Scala 3 is the shiny new Scala compiler, built upon a complete redesign of the core foundations of the language.
+It simplifies many of the language complexities, and brings new features that you can use to make your code more expressive and to enhance its performance.
+
+However, migrating a project can be challenging, especially if it's complex.
+That's where sbt-scala3-migrate comes in, automating much of the migration process.
+
 This course targets the Scala developpers who maintain Scala 2.13 projects using sbt, and wish to migrate to Scala 3.
-
-The course is based on [sbt-scala3-migrate](https://github.com/scalacenter/scala3-migrate), a tool that can assist you during the migration of your sbt project.
-
-At the end of the course, you should know the 4 major migration steps: updating the dependencies, updating the compiler options, fixing the syntax and fixing the types inference mismatches.
+At the end of the course, you should master the 4 major migration steps: updating the dependencies, updating the compiler options, fixing the syntax and fixing the types inference errors.
 
 ## Approach
 
-We start from an existing Scala 2.13 dummy project.
-It depends on a few library dependencies and compiler plugins taken from the Scala ecosystem, and consists of a few source files and a few tests.
+In the course, you will be guided step-by-step through the migration of a tailored Scala 2.13 project.
+The project depends on a few library dependencies and compiler plugins taken from the Scala ecosystem.
+The code of the project does not do anything really useful.
+It is a collection of patterns that serve the purpose of the course: learning about the migration issues and how to solve them.
 
-Each exercise focuses on one of the migration step: updating the dependencies, updating the compiler options, fixing the syntax, and fixing the type errors.
-After each exercise the project should still compile to Scala 2.13 and the tests should still run successfully.
+Each exercise focuses on one migration step:
+1. Installing sbt-scala3-migrate
+2. Updating the dependencies: Understand how to upgrade your project's dependencies to their Scala 3-compatible versions.
+3. Updating the scalac options: Adjust your build configuration to align with Scala 3's compiler options.
+4. Fixing syntax: Address and resolve syntax differences between Scala 2.13 and Scala 3.
+5. Fixing Type Inference Errors: Tackle type inference issues that may arise during migration.
+6. Updating the Scala Version!
+
+After each exercise, the project should still compile to Scala 2.13 and the tests should still run successfully.
 At the end of the course, it should compile to Scala 3 and the tests should run successfully in Scala 3.
 
 ## Course installation
@@ -159,8 +173,27 @@ Observe that all 9 tests passed successfully.
 
 ### Installing an IDE
 
-Instructions are provided in the `IDE-Setup.md` file in the root folder of the installed
-course.
+We recommend to use either IntelliJ with the Scala language plugin, or Visual Code Studio with Metals.
+
+If you haven't installed an IDE that support Scala, install either IntelliJ or VSCode by following the instructions linked in the following sections.
+
+> Note: in our experience, VSCode with Metals definitely has an edge on the IntelliJ IDE for Scala Worksheet support.
+
+#### Installing IntelliJ with the Scala Language Plugin
+
+* [Install the IntelliJ IDE](https://www.jetbrains.com/help/idea/installation-guide.html#standalone) (Community or Ultimate edition)
+* [Install the Scala Plugin](https://www.jetbrains.com/help/idea/discover-intellij-idea-for-scala.html)
+
+#### Installing Visual Code Studio with Metals
+
+* [Install Visual Studio Code](https://code.visualstudio.com/docs/setup/setup-overview)
+* [Install the Scala extension: Metals](https://scalameta.org/metals/docs/editors/vscode/)
+
+#### Other Scala source editors
+
+There are plenty of other options for editing Scala code.
+For example, Metals supports Vim, Sublime Text and Emacs.
+For more information, have a look at the [Text Editors section](https://scalameta.org/metals/docs) in the Metals Documentation.
 
 ## A note to course authors & contributors
 
