@@ -49,6 +49,7 @@ jobs:
 
     - name: Check code formatting
       run: sbt "scalafmtCheckAll ; scalafmtSbtCheck"
+      working-directory: ./exercises/${{matrix.exercise}}
 
     - name: Test with sbt
       run: sbt test
