@@ -4,7 +4,7 @@ lazy val main = project
   .settings(
     scalaVersion := "2.13.11",
     scalacOptions ++= {
-      val sharedScalacOptions = Seq(
+      val sharedOptions = Seq(
         "-encoding",
         "UTF-8",
         "-Wunused:imports,privates,locals"
