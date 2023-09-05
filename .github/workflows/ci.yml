@@ -80,13 +80,13 @@ jobs:
           export PATH=${PATH}:$GITHUB_WORKSPACE/CMT/bin
           git config --global user.email "no-reply@epfl.ch"
           git config --global user.name "EPFL user"
-          cmta studentify -f -g -m scala3-migration-course -d studentified
+          cmta studentify -f -g -m . -d studentified
           (cd studentified && exec zip -r scala3-migration-course-student.zip scala3-migration-course)  
           
       - name: Linearize Repo
         run: |
           mkdir -p linearized
-          cmta linearize -f -m scala3-migration-course -d linearized
+          cmta linearize -f -m . -d linearized
           mv linearized/scala3-migration-course linearized/scala3-migration-course-linearized
           (cd linearized && exec zip -r scala3-migration-course-linearized.zip $scala3-migration-course-linearized)
         
