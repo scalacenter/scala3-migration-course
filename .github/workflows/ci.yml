@@ -50,6 +50,7 @@ jobs:
     - name: Test with sbt
       run: sbt test
       working-directory: ./exercises/${{matrix.exercise}}
+
   create-release:
     runs-on: ubuntu-latest
     needs: [test-exercise]
@@ -69,6 +70,9 @@ jobs:
         uses: coursier/setup-action@v1
         with:
           jvm: temurin:11
+
+      - name: Check code formatting
+        run: sbt "scalafmtCheckAll ; scalafmtSbtCheck"
 
       - name: Setup Course Management Tools  
         run: |

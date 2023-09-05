@@ -10,7 +10,7 @@ object TypeIncompat {
     implicit val ctx: Context[Foo] = new Context
   }
 
-  object Fizz extends Foo[Int] with Bar[Int] 
+  object Fizz extends Foo[Int] with Bar[Int]
 
   def toBar[A](foo: Foo[A]): Bar[A] = ???
 
