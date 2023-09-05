@@ -1,0 +1,52 @@
+name: Scala Course CI
+
+on:
+  push:
+    tags: '*'
+    paths-ignore:
+      - 'README.md'
+      - '**/README.md'
+      - 'bin/**'
+    branches: [ main ]
+  pull_request:
+    paths-ignore:
+      - 'README.md'
+      - '**/README.md'
+      - 'bin/**'
+    branches: [ main ]
+
+  workflow_dispatch:
+
+jobs:
+  list-exercises:
+    runs-on: ubuntu-latest
+    outputs:
+      exercises: ${{steps.list.outputs.exercises}}
+    steps:
+      - uses: actions/checkout@v3
+      - id: list
+        run: echo "::set-output name=exercises::$(ls ./exercises | grep exercise_ | jq -cnR '[inputs | select(length>0)]')"
+
+  validate_course:
+    runs-on: ubuntu-latest
+    needs: list-exercises
+    strategy:
+      fail-fast: false
+      matrix:
+        exercise: ${{fromJson(needs.list-exercises.outputs.exercises)}}   
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up JDK 11
+      uses: actions/setup-java@v3
+      with:
+        java-version: 11
+        cache: 'sbt'
+        distribution: 'temurin'
+
+    - name: Check code formatting
+      run: sbt scalafmtCheckAll
+      working-directory: ./exercises/${{matrix.exercise}}
+
+    - name: Test with sbt
+      run: sbt test
+      working-directory: ./exercises/${{matrix.exercise}}
