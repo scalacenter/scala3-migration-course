@@ -74,21 +74,22 @@ jobs:
         run: |
           cs install --contrib cmta
 
+      - name: Configure Git user
+        run: |
+          git config --global user.email "noreply@github.com"
+          git config --global user.name "GitHub"
+
       - name: Studentify Repo
         run: |
-          mkdir -p studentified
-          export PATH=${PATH}:$GITHUB_WORKSPACE/CMT/bin
-          git config --global user.email "no-reply@epfl.ch"
-          git config --global user.name "EPFL user"
-          cmta studentify -f -g -m . -d studentified
-          (cd studentified && exec zip -r scala3-migration-course-student.zip scala3-migration-course)  
+          mkdir ~/studentified
+          cmta studentify -f -g -m . -d ~/studentified
+          (cd ~/studentified && exec zip -r scala3-migration-course-student.zip scala3-migration-course)  
           
       - name: Linearize Repo
         run: |
-          mkdir -p linearized
-          cmta linearize -f -m . -d linearized
-          mv linearized/scala3-migration-course linearized/scala3-migration-course-linearized
-          (cd linearized && exec zip -r scala3-migration-course-linearized.zip $scala3-migration-course-linearized)
+          mkdir ~/linearized
+          cmta linearize -f -m . -d ~/linearized
+          (cd ~/linearized && exec zip -r scala3-migration-course-linearized.zip scala3-migration-course)
         
       - name: Create Github Release
         id: create-release
@@ -107,16 +108,16 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create-release.outputs.upload_url }} # release created from previous step
-          asset_path: ./studentified/scala3-migration-course-student.zip
+          asset_path: ~/studentified/scala3-migration-course-student.zip
           asset_name: scala3-migration-course-student.zip
           asset_content_type: application/zip
-     
+
       - name: Upload Linearized repo to Github release
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create-release.outputs.upload_url }} # release created from previous step
-          asset_path: ./linearized/scala3-migration-course-linearized.zip
+          asset_path: ~/linearized/scala3-migration-course-linearized.zip
           asset_name: scala3-migration-course-linearized.zip
           asset_content_type: application/zip
