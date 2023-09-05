@@ -1,7 +1,7 @@
 # Installing sbt-scala3-migrate
 
 [sbt-scala3-migrate](https://github.com/scalacenter/scala3-migrate) is an sbt
-plugin depveloped by the Scala Center, to assist you during the migration of
+plugin developed by the Scala Center, to assist you during the migration of
 your sbt build to Scala 3.
 
 sbt-scala3-migrate can read your sbt configuration and report about what you
