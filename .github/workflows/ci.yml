@@ -81,15 +81,15 @@ jobs:
 
       - name: Studentify Repo
         run: |
-          mkdir ~/studentified
-          cmta studentify -f -g -m . -d ~/studentified
-          (cd ~/studentified && exec zip -r scala3-migration-course-student.zip scala3-migration-course)  
+          mkdir ${{ runner.temp }}/studentified
+          cmta studentify -f -g -m . -d ${{ runner.temp }}/studentified
+          (cd ${{ runner.temp }}/studentified && exec zip -r scala3-migration-course-student.zip scala3-migration-course)  
           
       - name: Linearize Repo
         run: |
-          mkdir ~/linearized
-          cmta linearize -f -m . -d ~/linearized
-          (cd ~/linearized && exec zip -r scala3-migration-course-linearized.zip scala3-migration-course)
+          mkdir ${{ runner.temp }}/linearized
+          cmta linearize -f -m . -d ${{ runner.temp }}/linearized
+          (cd ${{ runner.temp }}/linearized && exec zip -r scala3-migration-course-linearized.zip scala3-migration-course)
         
       - name: Create Github Release
         id: create-release
@@ -108,7 +108,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create-release.outputs.upload_url }} # release created from previous step
-          asset_path: ~/studentified/scala3-migration-course-student.zip
+          asset_path: ${{ runner.temp }}/studentified/scala3-migration-course-student.zip
           asset_name: scala3-migration-course-student.zip
           asset_content_type: application/zip
 
@@ -118,6 +118,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create-release.outputs.upload_url }} # release created from previous step
-          asset_path: ~/linearized/scala3-migration-course-linearized.zip
+          asset_path: ${{ runner.temp }}/linearized/scala3-migration-course-linearized.zip
           asset_name: scala3-migration-course-linearized.zip
           asset_content_type: application/zip
