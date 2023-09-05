@@ -1,6 +1,6 @@
 # Migrating the library dependencies and compiler plugins
 
-One of the hardest an most important task of the migration is to update the
+One of the hardest and most important tasks of the migration is to update the
 library dependencies.
 
 A large part of the ecosystem has already been ported to Scala 3. Consequently,
