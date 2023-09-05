@@ -47,6 +47,9 @@ jobs:
         cache: 'sbt'
         distribution: 'temurin'
 
+    - name: Check code formatting
+      run: sbt "scalafmtCheckAll ; scalafmtSbtCheck"
+
     - name: Test with sbt
       run: sbt test
       working-directory: ./exercises/${{matrix.exercise}}
@@ -70,9 +73,6 @@ jobs:
         uses: coursier/setup-action@v1
         with:
           jvm: temurin:11
-
-      - name: Check code formatting
-        run: sbt "scalafmtCheckAll ; scalafmtSbtCheck"
 
       - name: Setup Course Management Tools  
         run: |
