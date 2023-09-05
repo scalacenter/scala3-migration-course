@@ -55,8 +55,10 @@ sbt:main> migrateDependencies main
 [success] Total time: 1 s, completed Sep 4, 2023 11:39:34 AM
 ```
 
-2. The `java-diff-utils` dependency is already valid because it is a Java
-   dependency.
+2. `java-diff-utils` is already valid because it is a Java dependency.
+   `scala-reflect` is also valid because it is a core Scala 2.13 library. (Scala
+   3 uses Scala 2.13 standard library) However you should force its version to
+   be "2.13.11" instead of `scalaVersion.value`.
 
 3. Update the `cats-core` and `munit` versions.
 
@@ -108,7 +110,7 @@ scalacOptions ++= {
 9. To check that sbt can resolve the Scala 3 dependencies you can run:
 
 ```
-sbt:main> ++3.3.0!
+sbt:main> set main/scalaVersion := "3.3.0"
 sbt:main> main/update
 sbt:main> reload
 ```
