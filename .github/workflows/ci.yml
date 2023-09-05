@@ -49,7 +49,7 @@ jobs:
       working-directory: ./exercises/${{matrix.exercise}}
   create_release:
     runs-on: ubuntu-latest
-    needs: [validate_course]
+    needs: [test-exercise]
     # Release gets triggered only on creating new tags
     if: github.event_name == 'push' && startsWith(github.event.ref, 'refs/tags')
     name: Release ${{ github.ref }}
