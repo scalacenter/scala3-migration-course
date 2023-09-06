@@ -13,5 +13,9 @@ object DiffUtil {
     .build
 
   def diff(original: String, revised: String): String =
-    generator.generateDiffRows(List(original).asJava, List(revised).asJava).asScala.head.getOldLine
+    generator
+      .generateDiffRows(List(original).asJava, List(revised).asJava)
+      .asScala
+      .head
+      .getOldLine
 }

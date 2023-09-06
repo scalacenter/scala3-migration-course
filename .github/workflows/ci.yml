@@ -48,7 +48,7 @@ jobs:
         distribution: 'temurin'
 
     - name: Check code formatting
-      run: sbt "scalafmtCheckAll ; scalafmtSbtCheck"
+      run: scalafmt --test
       working-directory: ./exercises/${{matrix.exercise}}
 
     - name: Test with sbt
@@ -60,7 +60,7 @@ jobs:
     needs: [test-exercise]
     # Release gets triggered only on creating new tags
     if: github.event_name == 'push' && startsWith(github.event.ref, 'refs/tags')
-    name: Release ${{ github.ref }}
+    name: Release ${{github.ref}}
     steps:
       - name: Checkout Course Repo
         uses: actions/checkout@v3
@@ -86,43 +86,43 @@ jobs:
 
       - name: Studentify Repo
         run: |
-          mkdir ${{ runner.temp }}/studentified
-          cmta studentify -f -g -m . -d ${{ runner.temp }}/studentified
-          (cd ${{ runner.temp }}/studentified && exec zip -r scala3-migration-course-student.zip scala3-migration-course)  
+          mkdir ${{runner.temp}}/studentified
+          cmta studentify -f -g -m . -d ${{runner.temp}}/studentified
+          (cd ${{runner.temp}}/studentified && exec zip -r scala3-migration-course-student.zip scala3-migration-course)  
           
       - name: Linearize Repo
         run: |
-          mkdir ${{ runner.temp }}/linearized
-          cmta linearize -f -m . -d ${{ runner.temp }}/linearized
-          (cd ${{ runner.temp }}/linearized && exec zip -r scala3-migration-course-linearized.zip scala3-migration-course)
+          mkdir ${{runner.temp}}/linearized
+          cmta linearize -f -m . -d ${{runner.temp}}/linearized
+          (cd ${{runner.temp}}/linearized && exec zip -r scala3-migration-course-linearized.zip scala3-migration-course)
         
       - name: Create Github Release
         id: create-release
         uses: actions/create-release@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
         with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
+          tag_name: ${{github.ref}}
+          release_name: Release ${{github.ref}}
           draft: false
           prerelease: false
           
       - name: Upload Studentified repo to Github release
         uses: actions/upload-release-asset@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
         with:
-          upload_url: ${{ steps.create-release.outputs.upload_url }} # release created from previous step
-          asset_path: ${{ runner.temp }}/studentified/scala3-migration-course-student.zip
+          upload_url: ${{steps.create-release.outputs.upload_url}}
+          asset_path: ${{runner.temp}}/studentified/scala3-migration-course-student.zip
           asset_name: scala3-migration-course-student.zip
           asset_content_type: application/zip
 
       - name: Upload Linearized repo to Github release
         uses: actions/upload-release-asset@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
         with:
-          upload_url: ${{ steps.create-release.outputs.upload_url }} # release created from previous step
-          asset_path: ${{ runner.temp }}/linearized/scala3-migration-course-linearized.zip
+          upload_url: ${{steps.create-release.outputs.upload_url}}
+          asset_path: ${{runner.temp}}/linearized/scala3-migration-course-linearized.zip
           asset_name: scala3-migration-course-linearized.zip
           asset_content_type: application/zip

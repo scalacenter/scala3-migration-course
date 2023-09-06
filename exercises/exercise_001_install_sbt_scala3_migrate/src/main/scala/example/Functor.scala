@@ -13,7 +13,7 @@ object Functor {
     def fmap[A, B](fa: Either[A, R])(f: A => B): Either[B, R] =
       fa match {
         case Right(r) => Right(r)
-        case Left(a)  => Left(f(a))
+        case Left(a) => Left(f(a))
       }
   }
 }
