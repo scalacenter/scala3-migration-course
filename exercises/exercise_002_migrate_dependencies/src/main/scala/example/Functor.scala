@@ -7,7 +7,7 @@ trait Functor[M[_]] {
 object Functor {
   def apply[M[_]: Functor]: Functor[M] = implicitly[Functor[M]]
 
-  implicit def eitherLeftFunctor[R]: Functor[Either[*, R]] =  new EitherLeftFunctor[R]
+  implicit def eitherLeftFunctor[R]: Functor[Either[*, R]] = new EitherLeftFunctor[R]
 
   class EitherLeftFunctor[R] extends Functor[λ[A => Either[A, R]]] {
     def fmap[A, B](fa: Either[A, R])(f: A => B): Either[B, R] =
@@ -17,4 +17,3 @@ object Functor {
       }
   }
 }
-

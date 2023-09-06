@@ -4,8 +4,7 @@ import com.github.difflib.text.DiffRowGenerator
 import scala.jdk.CollectionConverters.*
 
 object DiffUtil {
-  private val generator = DiffRowGenerator
-    .create
+  private val generator = DiffRowGenerator.create
     .showInlineDiffs(true)
     .mergeOriginalRevised(true)
     .inlineDiffByWord(true)
