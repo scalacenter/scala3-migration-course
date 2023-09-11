@@ -27,7 +27,7 @@ focus on installing the latest version of sbt-scala3-migrate.
    sbt-scala3-migrate:
 
 ```scala
-addSbtPlugin("ch.epfl.scala" % "sbt-scala3-migrate" % "0.6.0")
+addSbtPlugin("ch.epfl.scala" % "sbt-scala3-migrate" % "0.6.1")
 ```
 
 2. You can go to the
@@ -50,7 +50,7 @@ sbt:main> reload
 [info] loading settings for project main from build.sbt ...
 [info] set current project to main (in build file:/home/piquerez/github/scalacenter/scala3-migration-example/)
 [info] 
-[info] sbt-scala3-migrate 0.6.0 detected!
+[info] sbt-scala3-migrate 0.6.1 detected!
 [info] It can assist you during the migration to Scala 3.
 [info] Run the following commands, to start migrating to Scala 3:
 [info]   - migrateDependencies <project>
